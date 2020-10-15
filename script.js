@@ -1,4 +1,5 @@
-<script>
+    var pageContent = document.querySelector("#page-content")
+    
  
     const questionsPerQuiz = 15;
     const difficultyMultiplier = {
@@ -38,6 +39,13 @@
     }
     function gotQuiz(data){
         console.log(data);
+        for (i = 0; i < 15; i++) {
+            var question = data.results[i]
+            console.log(question);
+            var questionEl = document.createElement("h3")
+            questionEl.innerText = question.question;
+            pageContent.appendChild(questionEl)
+        }
     }
           
     /* EVENT HANDLERS */
@@ -59,5 +67,3 @@ function shuffle(arr){
     }
   	return shuffled;
 }
-    
-          </script>
