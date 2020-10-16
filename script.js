@@ -1,5 +1,5 @@
 /* SETTINGS */
-const questionsPerQuiz = 5;
+const questionsPerQuiz = 15;
 const difficultyScore = {
         "easy": 1,
         "medium": 3,
@@ -133,10 +133,8 @@ function getLeaderboard(){
 }
 
 function addToLeaderBoard(category, name, score){
-    console.log("add to leaderboard", category, name, score);
     let player = {c:category, n:name, s:score};
     var oldScores = JSON.parse(localStorage.getItem("scoreArray"));
-    console.log(oldScores);
     var newScores = [];
     var higher = false;
 
@@ -144,7 +142,6 @@ function addToLeaderBoard(category, name, score){
         newScores=[player]; 
     } else {
         // sort leaderboard
-        console.log(oldScores.length);
         for (i=0; i<oldScores.length; i++) { // loop over old high scores
             if (!higher) {
                 if (player.s > oldScores[i].s) {
@@ -162,7 +159,6 @@ function addToLeaderBoard(category, name, score){
             newScores[oldScores.length] = player
         }
     }
-    console.log(newScores);
     localStorage.setItem("scoreArray", JSON.stringify(newScores));
 }
 
