@@ -81,12 +81,12 @@ function loadQuestion(){
   	if (!quiz.length) return gameOver();
   	//game is NOT over yet...
 	question = quiz.pop(); //remove last question from quiz array
-  	let html = `<h2>${question.question}</h2>`;
+  	let html = `<h2 class="w3-animate-right">${question.question}</h2>`;
   	if (question.type === "boolean"){
     	//true-false
       	html += `
-			<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-red w3-padding-16 w3-margin">True</button>
-			<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-red w3-padding-16 w3-margin">False</button>
+			<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">True</button>
+			<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">False</button>
 		`;
     }
   	else {
@@ -95,7 +95,7 @@ function loadQuestion(){
       	answers.push(question.correct_answer);
         answers = shuffle(answers);
       	for (let answer of answers){
-        	html += `<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin">${answer}</button>`;
+        	html += `<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">${answer}</button>`;
         }
     }
   	html += "<footer></footer>"; //this will hold correct/incorrect notification
