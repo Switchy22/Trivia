@@ -101,7 +101,7 @@ function loadQuestion() {
 			html += `<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">${answer}</button>`;
 		}
 	}
-	html += "<footer></footer>"; //this will hold correct/incorrect notification
+	html += "<footer id='score'></footer>"; //this will hold correct/incorrect notification
 	//add HTML to the DOM
 	document.querySelector("main").innerHTML = html;
 	//add click listeners to all buttons
@@ -115,7 +115,7 @@ function gameOver() {
 	document.querySelector("main").innerHTML = `
 		<h2 class>You scored ${score} points!</h2>
 		<input class="w3-input w3-border w3-animate-input w3-round-large w3-hover-green" type-"text" style="width:30%"  placeholder="Enter your name" /><button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">Save</button>
-		<footer></footer>
+		<footer id='score'></footer>
 	`;
 	document.querySelector("main button").addEventListener("click", handleSaveNameButtonClick);
 	getLeaderboard();
@@ -123,16 +123,27 @@ function gameOver() {
 
 /* STORAGE */
 function getLeaderboard() {
-	let html = "<h3>Leaderboard</h3>";
+	const divElement = $("<div>")
+	divElement.append("<h3>Leaderboard</h3>");
 
 	// Get high scores
 	var scoreArray = JSON.parse(localStorage.getItem("scoreArray"));
-	html += "<ol>"
+	console.log(scoreArray);
+	divElement.append("<table id='highscore'></table>")
 	for (i = 0; i < Math.min(10, scoreArray.length); i++) {
-		html += "<li>" + scoreArray[i].n + " " + scoreArray[i].s + "</li>"
+		//html += "<li>" + scoreArray[i].n + " " + scoreArray[i].s + "</li>"
+		$("#highscore").append(`
+		<tr>
+			<td>${i + 1}</td>
+			
+			<td>${scoreArray[i].n}</td>
+			<td>${scoreArray[i].s}</td>
+		</tr>
+		`)
+
 	};
 
-	document.querySelector("main footer").innerHTML = html;
+	document.querySelector("#score").innerHTML = divElement;
 }
 
 function addToLeaderBoard(category, name, score) {
