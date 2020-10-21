@@ -33,7 +33,7 @@ function gotCategories(data) {
 	let html = "<h2>Select a Category:</h2>";
 	for (let category of data.trivia_categories) {
 		//e.g. {"id":9,"name":"General Knowledge"}
-		html += `<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-red w3-padding-16 w3-margin" data-id="${category.id}">${category.name}</button>`;
+		html += `<button class="button is-primary is-outlined is-rounded" data-id="${category.id}">${category.name}</button>`;
 	}
 	document.querySelector("header nav").innerHTML = html;
 	for (let button of document.querySelectorAll("header nav button")) {
@@ -85,11 +85,12 @@ function loadQuestion() {
 	//game is NOT over yet...
 	question = quiz.pop(); //remove last question from quiz array
 	let html = `<h2 class="w3-animate-right">${question.question}</h2>`;
+	console.log(question)
 	if (question.type === "boolean") {
 		//true-false
 		html += `
-			<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">True</button>
-			<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">False</button>
+			<button class="button is-primary is-inverted is-large">True</button>
+			<button class="button is-primary is-inverted is-large">False</button>
 		`;
 	}
 	else {
@@ -98,7 +99,7 @@ function loadQuestion() {
 		answers.push(question.correct_answer);
 		answers = shuffle(answers);
 		for (let answer of answers) {
-			html += `<button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">${answer}</button>`;
+			html += `<button class="button is-primary is-large">${answer}</button>`;
 		}
 	}
 	html += "<footer></footer>"; //this will hold correct/incorrect notification
