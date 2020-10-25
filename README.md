@@ -1,1 +1,7 @@
-# Trivia
+# Brain Scratchers
+
+## Brain Scrathers is an interactive trivia game that pulls questions from a variety of categories to test the user's knowledge.
+
+## Demo 
+
+![Alt](https://giphy.com/gifs/1uL6TlZN4sLvGa611S/links)

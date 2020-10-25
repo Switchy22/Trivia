@@ -165,6 +165,27 @@ function addToLeaderBoard(category, name, score) {
 	localStorage.setItem("scoreArray", JSON.stringify(newScores));
 }
 
+function getGif() {
+	var requestURL;
+	if (score > 15) {
+		requestURL="https://api.giphy.com/v1/gifs/random?api_key=2aJ7TOGT1h59xogJuPLSIsaPf0tU0PH2&tag=Congrats&rating=g";
+
+		var xhr = $.get(requestURL);
+		xhr.done(function(data) {
+		console.log("success got data", data); 
+		gifURL = data.data.image_url;
+		console.log(gifURL);
+		addGif(gifURL);
+	});
+	}
+}
+
+function addGif(link) {
+	let gif = document.createElement("img");
+	gif.src = link;
+	document.querySelector("#score").appendChild(gif);
+}
+
 /* HELPER FUNCTIONS */
 function shuffle(arr) {
 	let clone = arr.slice(0); //shallow clone
