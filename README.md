@@ -4,4 +4,4 @@
 
 ## Demo 
 
-<img src=(https://media.giphy.com/media/1uL6TlZN4sLvGa611S/giphy.gif)>
+![demo](./assets/images/TriviaGif.gif)
