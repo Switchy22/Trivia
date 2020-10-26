@@ -8,7 +8,7 @@ const difficultyScore = {
 const timeBetweenQuestions = 2000; //in milliseconds
 const categoryAPI = "https://opentdb.com/api_category.php";
 const quizAPI = `https://opentdb.com/api.php?amount=${questionsPerQuiz}&category=`;
-
+let gifURL;
 
 /* APP VARIABLES */
 let category, quiz, question, score;
@@ -117,6 +117,7 @@ function gameOver() {
 		<input class="w3-input w3-border w3-animate-input w3-round-large w3-hover-green" type-"text" style="width:30%"  placeholder="Enter your name" /><button class="w3-button w3-round-xxlarge w3-ripple w3-black w3-hover-green w3-padding-16 w3-margin w3-animate-zoom">Save</button>
 		<footer id='score'></footer>
 	`;
+	getGif();
 	document.querySelector("main button").addEventListener("click", handleSaveNameButtonClick);
 	getLeaderboard();
 }
@@ -163,6 +164,28 @@ function addToLeaderBoard(category, name, score) {
 		}
 	}
 	localStorage.setItem("scoreArray", JSON.stringify(newScores));
+}
+
+/* GIPHY API */
+function getGif() {
+	var requestURL;
+	if (score > 15) {
+		requestURL="https://api.giphy.com/v1/gifs/random?api_key=2aJ7TOGT1h59xogJuPLSIsaPf0tU0PH2&tag=Congrats&rating=g";
+		
+		var xhr = $.get(requestURL);
+		xhr.done(function(data) {
+		console.log("success got data", data); 
+		gifURL = data.data.image_url;
+		console.log(gifURL);
+		addGif(gifURL);
+	});
+	}
+}
+
+function addGif(link) {
+	let gif = document.createElement("img");
+	gif.src = link;
+	document.querySelector("#score").appendChild(gif);
 }
 
 /* HELPER FUNCTIONS */
