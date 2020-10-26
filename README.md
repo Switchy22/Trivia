@@ -16,7 +16,7 @@
 
 #Links
 
-## https://kahler197.github.io/Project-1/.
+## https://switchy22.github.io/Trivia/
 
 ## https://github.com/Switchy22/Trivia.git
 
